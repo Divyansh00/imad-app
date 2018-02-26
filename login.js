@@ -28,10 +28,9 @@ app.post('/logStat',function(req,res){
 	var username = req.body.username;
 	var password = req.body.password;
 	res.send("FDD");
-
 })
 
-vaar port =8080;
+var port =8080;
 app.listen(8080,function () {
 	console.log('Listening on port');
 })
