@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 
 var http = require('http');
 var Pool = require('pg').Pool;
