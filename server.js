@@ -4,14 +4,14 @@ var path = require('path');
 var crypto = require('crypto');
 var Pool = require('pg').Pool;
 var bodyParser = require('body-parser');
-require('dotenv').config()
+//require('dotenv').config()
 
 var config = {
     host: 'db.imad.hasura-app.io',
     port: '5432',
     user: 'divyanshchowdhary2016',
     database: 'divyanshchowdhary2016',
-    password: process.env.DB_PASSWORD
+    password: "db-divyanshchowdhary2016-41762"
 };
 
 
