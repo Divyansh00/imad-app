@@ -97,3 +97,28 @@ submit.onclick = function() {
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify({ username: username, password: password }));
 }
+
+
+var submit = document.getElementById('add_submit_btn');
+submit.onclick = function() {
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function() {
+        if (request.readyState == XMLHttpRequest.DONE) {
+            if (request.status === 200) {
+                console.log('user logged in');
+                alert('User created '+ username);
+            }  else if (request.status === 500) {
+                alert('something went wrong on the server');
+            }
+        }
+    }
+
+    var username = document.getElementById('reg_username').value;
+    var password = document.getElementById('reg_password').value;
+    console.log(username);
+    request.open('POST', 'http://divyanshchowdhary2016.imad.hasura-app.io/create-user', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify({ username: username, password: password }));
+}
