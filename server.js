@@ -160,9 +160,6 @@ app.post('/create-user', function(req, res) {
 app.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-
-
-   // var dbString = hash(password, salt);
     pool.query('SELECT * from "user" WHERE username = $1', [username], function(err, result) {
         if (err) {
             res.status(500).send(err.toString());
@@ -174,6 +171,8 @@ app.post('/login', function(req, res) {
                 var salt = dbString.split('$')[2];
                 var hashedPassword = hash(password, salt);
                 if (hashedPassword === dbString) {
+                    //set the session
+                    
                     res.send('credentials correct');
                 } else {
                     res.send(403).send("username/password is invalid");
