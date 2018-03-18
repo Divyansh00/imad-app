@@ -191,6 +191,11 @@ app.get('/check-login',function(req,res){
     }
 })
 
+app.get('/logout',function(req,res){
+    delete req.session.auth;
+    res.send('You are logged out');
+})
+
 app.get('/articles/:articleName', function(req, res) {
     //for ex: articleName==article-one 
     //articles[articleName]=={}content object for article one
