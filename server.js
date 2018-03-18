@@ -4,7 +4,7 @@ var path = require('path');
 var crypto = require('crypto');
 var Pool = require('pg').Pool;
 var bodyParser = require('body-parser');
-require('dotenv').config()
+//require('dotenv').config()
 
 var config = {
     host: 'db.imad.hasura-app.io',
