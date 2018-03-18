@@ -84,7 +84,7 @@ app.get('/ui/main.js', function(req, res) {
 
 app.get('/ui/style.css', function(req, res) {
     res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-})
+});
 
 var names = [];
 app.get('/submit-name', function(req, res) {
@@ -181,7 +181,7 @@ app.post('/login', function(req, res) {
 
         }
     });
-})
+});
 
 app.get('/check-login',function(req,res){
     if(req.session && req.session.auth && req.session.auth.userId){
@@ -189,12 +189,12 @@ app.get('/check-login',function(req,res){
     }else{
         res.send('You are not logged in');
     }
-})
+});
 
 app.get('/logout',function(req,res){
     delete req.session.auth;
     res.send('You are logged out');
-})
+});
 
 app.get('/articles/:articleName', function(req, res) {
     //for ex: articleName==article-one 
@@ -215,9 +215,6 @@ app.get('/articles/:articleName', function(req, res) {
     });
     // res.send(createTemplate(articledata));
 });
-
-
-
 
 app.get('/ui/madi.png', function(req, res) {
     res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
