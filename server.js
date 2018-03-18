@@ -168,7 +168,7 @@ app.post('/login', function(req, res) {
         } else {
             if (result.rows.length === 0) {
                 res.setHeader('Content-Type','application/json');
-                res.send(403).send(JSON.parse('{"error":"username/password is invalid"}'));
+                res.status(403).send(JSON.parse('{"error":"username/password is invalid"}'));
             } else {
                 var dbString = result.rows[0].password;
                 var salt = dbString.split('$')[2];
@@ -177,10 +177,10 @@ app.post('/login', function(req, res) {
                     //set the session
                     req.session.auth = {userId: result.rows[0].id};
                     res.setHeader('Content-Type','application/json');
-                    res.send(JSON.parse('{"message":"You hhave successfully logged in"}'));
+                    res.send(JSON.parse('{"message":"You have successfully logged in"}'));
                 } else {
                     res.setHeader('Content-Type','application/json');
-                    res.send(403).send(JSON.parse('{"error":"username/password is invalid"}'));
+                    res.status(403).send(JSON.parse('{"error":"username/password is invalid"}'));
                 }
             }
 
