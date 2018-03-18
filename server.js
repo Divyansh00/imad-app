@@ -4,6 +4,7 @@ var path = require('path');
 var crypto = require('crypto');
 var Pool = require('pg').Pool;
 var bodyParser = require('body-parser');
+var session = require('express-session');
 //require('dotenv').config()
 
 var config = {
