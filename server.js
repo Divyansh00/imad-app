@@ -150,9 +150,11 @@ app.post('/create-user', function(req, res) {
     var dbString = hash(password, salt);
     pool.query('INSERT into "user" (username, password) values ($1, $2)', [username, dbString], function(err, result) {
         if (err) {
-            res.status(500).send(err.toString());
+            res.setHeader('Content-Type','application/json');
+            res.status(500).send(JSON.stringify({"error":err.toString()}));
         } else {
-            res.send('User suceessfully created' + username);
+            res.setHeader('Content-Type','application/json');
+            res.send(JSON.parse('{"message":"User suceessfully created ' + username+'"}'));
         }
     });
 });
@@ -173,9 +175,11 @@ app.post('/login', function(req, res) {
                 if (hashedPassword === dbString) {
                     //set the session
                     req.session.auth = {userId: result.rows[0].id};
-                    res.send('credentials correct');
+                    res.setHeader('Content-Type','application/json');
+                    res.send(JSON.parse('{"message":"You hhave successfully logged in"}'));
                 } else {
-                    res.send(403).send("username/password is invalid");
+                    res.setHeader('Content-Type','application/json');
+                    res.send(403).send(JSON.parse('{"error":"username/password is invalid"}'));
                 }
             }
 
