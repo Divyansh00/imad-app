@@ -221,6 +221,34 @@ app.get('/articles/:articleName', function(req, res) {
     // res.send(createTemplate(articledata));
 });
 
+app.get('/get-articles', function (req, res) {
+// articleName == article-one
+// articles[articleName] == {} content object for article one
+
+    pool.query("SELECT * FROM article", function (err, result) {
+        if(err) {
+       // res.status(500).send(err.toString());
+
+       // For anddroid app MyBlog
+            console.error('Error executing query', err.stack);
+            res.status(500).send(err.toString());
+        } 
+        else {
+            if(result.rows.length === 0){
+                res.status(404).send('Article not found.');
+            }
+            else {
+
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(result.rows));
+            }
+        }
+    });
+});
+
+
+
+
 app.get('/ui/madi.png', function(req, res) {
     res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
